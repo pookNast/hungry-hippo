@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="{% block meta_description %}24/7 Emergency Electrical Service in Fort Myers & Cape Coral. Licensed electrical contractor (EC13009733) with 2-hour average response time.{% endblock %}">
+
+  <title>{% block title %}Monaco Electric Construction Services | 24/7 Emergency Electrical | Fort Myers & Cape Coral{% endblock %}</title>
+
+  <!-- Preconnect to critical origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Dynamic Favicon (Dark/Light) -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', path='/images/favicon.svg') }}">
+
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/output.css') }}">
+
+  <!-- HTMX (9.2kb gzipped) -->
+  <script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
+
+  <!-- Alpine.js (deferred for < 12KB total JS) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="min-h-screen">
+
+  <!-- Skip Link (WCAG 2.2 AAA) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 bg-emergency text-white rounded">
+    Skip to main content
+  </a>
+
+  <!-- Emergency Contact Rail (Mobile Bottom Sheet, Desktop Fixed) -->
+  <aside
+    x-data="{
+      open: false,
+      dismissed: localStorage.getItem('emergency-rail-dismissed') === 'true'
+    }"
+    x-show="!dismissed"
+    x-cloak
+    class="fixed bottom-0 left-0 right-0 z-40 md:top-0 md:right-0 md:bottom-auto md:left-auto md:w-80 no-print"
+    role="complementary"
+    aria-label="Emergency Contact"
+  >
+    <div class="bg-emergency text-white p-4 md:p-6 shadow-2xl">
+      <div class="flex items-start justify-between mb-3">
+        <h2 class="text-xl font-bold tracking-tight">Emergency Dispatch</h2>
+        <button
+          @click="dismissed = true; localStorage.setItem('emergency-rail-dismissed', 'true')"
+          class="text-white/80 hover:text-white transition-colors"
+          aria-label="Dismiss emergency rail"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <a
+        href="tel:{{ phone }}"
+        class="block w-full bg-white text-emergency text-center font-bold py-4 px-6 rounded text-2xl hover:bg-neutral-100 transition-all duration-200 transform hover:scale-105 active:scale-95 emergency-cta"
+      >
+        {{ phone }}
+      </a>
+
+      <p class="text-sm mt-3 text-white/90 font-mono">
+        Avg Response: <strong>2 hrs</strong><br>
+        License: {{ license }}<br>
+        Available: <strong>24/7/365</strong>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-30 bg-neutral-50/95 backdrop-blur-sm border-b border-neutral-200" role="banner">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" role="navigation" aria-label="Main navigation">
+      <div class="flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-3 focus-ring">
+          <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="40" height="40" rx="8" fill="var(--emergency-red)"/>
+            <path d="M20 10L12 22h6l-2 8 10-14h-6l2-6z" fill="white"/>
+          </svg>
+          <span class="text-2xl font-bold tracking-tight">MECS<span class="text-neutral-800/50"> of SWFL</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <li><a href="/services" class="hover:text-emergency transition-colors">Services</a></li>
+          <li><a href="/service-area" class="hover:text-emergency transition-colors">Service Area</a></li>
+          <li><a href="/quote" class="btn-emergency text-base">Get Quote</a></li>
+        </ul>
+
+        <!-- Mobile Menu Button -->
+        <button
+          x-data="{ mobileMenuOpen: false }"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          class="md:hidden p-2 text-neutral-900 hover:text-emergency transition-colors"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-neutral-900 text-neutral-100 py-12" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="text-lg font-bold mb-4">MECS of SWFL</h3>
+          <p class="text-sm text-neutral-400">
+            Licensed electrical contractor serving Southwest Florida since 2009.
+          </p>
+          <p class="text-sm text-neutral-400 mt-2 font-mono">
+            License: {{ license }}
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4">Service Area</h3>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            {% for area in service_areas %}
+            <li>{{ area }}, FL</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4">Contact</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="tel:{{ phone }}" class="hover:text-emergency transition-colors">
+                {{ phone }}
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@monacoelectric.com" class="hover:text-emergency transition-colors">
+                info@monacoelectric.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-neutral-800 pt-8 text-sm text-neutral-400 text-center">
+        <p>&copy; 2024 MECS of SWFL. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Feedback Widget (22s delay, Alpine.js controlled) -->
+  <div
+    x-data="{
+      visible: false,
+      dismissed: localStorage.getItem('feedback-dismissed') === 'true',
+      reaction: '',
+      comment: '',
+      submitted: false
+    }"
+    x-init="setTimeout(() => { if (!dismissed) { visible = true } }, 22000)"
+    x-show="visible && !dismissed && !submitted"
+    x-cloak
+    class="fixed bottom-20 right-4 bg-white rounded-lg shadow-2xl p-6 max-w-sm z-50 border border-neutral-200 no-print"
+    role="dialog"
+    aria-labelledby="feedback-heading"
+  >
+    <div class="flex items-start justify-between mb-4">
+      <h3 id="feedback-heading" class="text-lg font-bold text-neutral-900">How are we doing?</h3>
+      <button
+        @click="dismissed = true; localStorage.setItem('feedback-dismissed', 'true'); visible = false"
+        class="text-neutral-400 hover:text-neutral-900 transition-colors"
+        aria-label="Dismiss feedback widget"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex justify-around mb-4">
+      <button
+        @click="reaction = 'love'"
+        :class="reaction === 'love' ? 'scale-125 opacity-100' : 'opacity-50 hover:opacity-75'"
+        class="text-4xl transition-all transform"
+        aria-label="I love this site"
+      >
+        ⚡
+      </button>
+      <button
+        @click="reaction = 'confused'"
+        :class="reaction === 'confused' ? 'scale-125 opacity-100' : 'opacity-50 hover:opacity-75'"
+        class="text-4xl transition-all transform"
+        aria-label="I'm confused"
+      >
+        😕
+      </button>
+      <button
+        @click="reaction = 'sad'"
+        :class="reaction === 'sad' ? 'scale-125 opacity-100' : 'opacity-50 hover:opacity-75'"
+        class="text-4xl transition-all transform"
+        aria-label="I'm not satisfied"
+      >
+        😟
+      </button>
+    </div>
+
+    <div x-show="reaction !== ''" class="space-y-3">
+      <textarea
+        x-model="comment"
+        placeholder="Tell us more (optional)"
+        class="w-full px-3 py-2 border border-neutral-300 rounded resize-none focus-ring"
+        rows="3"
+      ></textarea>
+
+      <button
+        hx-post="/api/feedback"
+        hx-vals='{"reaction": reaction, "comment": comment}'
+        @click="submitted = true"
+        class="w-full bg-emergency text-white px-4 py-2 rounded font-semibold hover:bg-emergency-hover transition-colors"
+      >
+        Submit Feedback
+      </button>
+    </div>
+  </div>
+
+  <!-- Konami Code Easter Egg -->
+  <script>
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          document.body.style.filter = 'hue-rotate(180deg)';
+          setTimeout(() => { document.body.style.filter = 'none'; }, 3000);
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+  </script>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

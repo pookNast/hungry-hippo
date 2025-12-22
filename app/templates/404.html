@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Circuit Not Found | MECS of SWFL</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/output.css') }}">
+</head>
+<body class="min-h-screen flex items-center justify-center bg-neutral-50">
+  <div class="text-center max-w-2xl mx-auto px-4">
+    <svg class="w-32 h-32 mx-auto mb-8 text-emergency" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+    </svg>
+
+    <h1 class="text-6xl font-bold mb-4 text-neutral-900">404</h1>
+    <h2 class="text-3xl font-bold mb-6 text-neutral-800">Circuit Not Found</h2>
+    <p class="text-xl text-neutral-800 mb-8">
+      Looks like this page tripped the breaker. Let's get you back on track.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/"
+        class="btn-emergency"
+      >
+        Return Home
+      </a>
+      <a
+        href="tel:(239) 237-2899"
+        class="btn-outline"
+      >
+        Call Emergency Line
+      </a>
+    </div>
+  </div>
+</body>
+</html>

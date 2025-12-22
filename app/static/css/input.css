@@ -1,0 +1,164 @@
+/* Hungry-Hippo Input CSS - Emergency Modernism Design System */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+@layer base {
+  /* No FOIT (Flash of Invisible Text) */
+  @font-face {
+    font-family: 'Inter Variable';
+    font-display: swap;
+    src: local('Inter');
+  }
+
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-display: swap;
+    src: local('JetBrains Mono');
+  }
+
+  /* Root variables for dynamic theming */
+  :root {
+    --emergency-red: oklch(0.45 0.19 25);
+    --emergency-red-hover: oklch(0.38 0.21 25);
+    --neutral-50: oklch(0.98 0.01 90);
+    --neutral-900: oklch(0.15 0.01 90);
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --neutral-50: oklch(0.15 0.01 90);
+      --neutral-900: oklch(0.95 0.01 90);
+    }
+  }
+
+  /* Base typography */
+  body {
+    @apply font-sans text-neutral-900 bg-neutral-50;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus indicators (WCAG 2.2 AAA) */
+  *:focus-visible {
+    @apply outline-none ring-4 ring-emergency ring-offset-2 rounded;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    :root {
+      --neutral-900: oklch(0% 0 0);
+      --neutral-50: oklch(100% 0 0);
+    }
+  }
+}
+
+/* Custom Components */
+@layer components {
+  /* Emergency CTA Button */
+  .btn-emergency {
+    @apply inline-flex items-center justify-center;
+    @apply bg-emergency text-white font-bold;
+    @apply px-8 py-4 rounded-lg text-lg;
+    @apply hover:bg-emergency-hover active:scale-95;
+    @apply transition-all duration-200 shadow-lg hover:shadow-emergency;
+    @apply emergency-cta;
+    min-height: 64px; /* Touch target mobile */
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (min-width: 768px) {
+    .btn-emergency {
+      min-height: 88px; /* Touch target desktop */
+    }
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center;
+    @apply border-2 border-neutral-800 text-neutral-900;
+    @apply px-8 py-4 rounded-lg text-lg font-semibold;
+    @apply hover:bg-neutral-100 active:scale-95;
+    @apply transition-all duration-200;
+    min-height: 64px;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply animate-pulse bg-neutral-200 rounded;
+  }
+
+  /* Trust Badge */
+  .trust-badge {
+    @apply inline-flex items-center space-x-2;
+    @apply bg-white rounded-lg shadow-md p-4;
+    @apply border-2 border-emergency;
+  }
+
+  /* Service Card */
+  .service-card {
+    @apply bg-white rounded-lg p-8 shadow;
+    @apply hover:shadow-lg transition-all duration-200;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Emergency Service Card (highlighted) */
+  .service-card-emergency {
+    @apply bg-emergency text-white rounded-lg p-8;
+    @apply shadow-lg hover:shadow-emergency transition-all;
+    @apply transform hover:scale-105;
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only-focusable:focus,
+  .sr-only-focusable:active {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Print utilities */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  /* Custom cursor for emergency CTAs */
+  .emergency-cta {
+    cursor: crosshair;
+  }
+}

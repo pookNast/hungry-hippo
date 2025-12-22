@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+ENV/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log
+
+# Development
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+
+# Docs and tests
+tests/
+docs/
+README.md
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+app/static/css/output.css
+
+# Database
+*.db
+*.sqlite

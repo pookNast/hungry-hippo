@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/${GITHUB_USERNAME}/hungry-hippo:latest
+    container_name: hungry-hippo
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - BUSINESS_PHONE=(239) 237-2899
+      - BUSINESS_EMAIL=info@monacoelectric.com
+      - BUSINESS_LICENSE=EC13009733
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - hungry-hippo-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: hungry-hippo-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    networks:
+      - hungry-hippo-network
+
+networks:
+  hungry-hippo-network:
+    driver: bridge

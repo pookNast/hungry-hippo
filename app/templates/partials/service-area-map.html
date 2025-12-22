@@ -1,0 +1,28 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <h2 id="service-area-heading" class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+    Service Area
+  </h2>
+  <p class="text-xl text-neutral-800 mb-8">
+    Serving all of Lee County, Florida with same-day emergency service.
+  </p>
+
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <!-- Placeholder for map image -->
+    <div class="w-full h-96 bg-neutral-200 flex items-center justify-center">
+      <svg class="w-16 h-16 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+      </svg>
+    </div>
+
+    <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+      {% for area in service_areas %}
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5 text-emergency" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+        </svg>
+        <span class="font-semibold">{{ area['name'] }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

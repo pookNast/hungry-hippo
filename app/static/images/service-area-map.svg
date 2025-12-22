@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <!-- Background -->
+  <rect width="1200" height="600" fill="oklch(0.95 0.01 90)"/>
+  
+  <!-- Simple Florida outline (Southwest region) -->
+  <path d="M 400 300 Q 450 250, 500 280 Q 550 300, 580 350 Q 600 400, 550 450 Q 500 480, 450 450 Q 400 420, 380 370 Q 360 320, 400 300 Z" 
+        fill="oklch(0.90 0.02 90)" stroke="oklch(0.50 0.02 90)" stroke-width="2"/>
+  
+  <!-- Location Markers -->
+  <!-- Fort Myers -->
+  <g transform="translate(480, 360)">
+    <circle cx="0" cy="0" r="12" fill="oklch(0.45 0.19 25)"/>
+    <path d="M 0 -8 L -6 4 L 0 1 L 6 4 Z" fill="white"/>
+    <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="oklch(0.15 0.01 90)">Fort Myers</text>
+  </g>
+  
+  <!-- Cape Coral -->
+  <g transform="translate(420, 390)">
+    <circle cx="0" cy="0" r="12" fill="oklch(0.45 0.19 25)"/>
+    <path d="M 0 -8 L -6 4 L 0 1 L 6 4 Z" fill="white"/>
+    <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="oklch(0.15 0.01 90)">Cape Coral</text>
+  </g>
+  
+  <!-- Bonita Springs -->
+  <g transform="translate(520, 420)">
+    <circle cx="0" cy="0" r="12" fill="oklch(0.45 0.19 25)"/>
+    <path d="M 0 -8 L -6 4 L 0 1 L 6 4 Z" fill="white"/>
+    <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="oklch(0.15 0.01 90)">Bonita Springs</text>
+  </g>
+  
+  <!-- Estero -->
+  <g transform="translate(460, 330)">
+    <circle cx="0" cy="0" r="12" fill="oklch(0.45 0.19 25)"/>
+    <path d="M 0 -8 L -6 4 L 0 1 L 6 4 Z" fill="white"/>
+    <text x="0" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="oklch(0.15 0.01 90)">Estero</text>
+  </g>
+  
+  <!-- Service Area Coverage Circle -->
+  <circle cx="470" cy="380" r="90" fill="none" stroke="oklch(0.45 0.19 25)" stroke-width="3" stroke-dasharray="10,5" opacity="0.5"/>
+  
+  <!-- Legend -->
+  <g transform="translate(750, 250)">
+    <rect x="0" y="0" width="380" height="200" fill="white" stroke="oklch(0.50 0.02 90)" stroke-width="2" rx="8"/>
+    <text x="190" y="40" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="bold" fill="oklch(0.15 0.01 90)">MECS Service Area</text>
+    
+    <g transform="translate(40, 70)">
+      <circle cx="0" cy="0" r="8" fill="oklch(0.45 0.19 25)"/>
+      <text x="20" y="5" font-family="sans-serif" font-size="16" fill="oklch(0.15 0.01 90)">Emergency Service Available</text>
+    </g>
+    
+    <g transform="translate(40, 110)">
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="oklch(0.45 0.19 25)" stroke-width="3" stroke-dasharray="6,3"/>
+      <text x="20" y="5" font-family="sans-serif" font-size="16" fill="oklch(0.15 0.01 90)">Coverage Radius: ~30 miles</text>
+    </g>
+    
+    <g transform="translate(40, 150)">
+      <text x="0" y="0" font-family="monospace" font-size="14" font-weight="bold" fill="oklch(0.45 0.19 25)">24/7 Response</text>
+      <text x="0" y="20" font-family="sans-serif" font-size="14" fill="oklch(0.50 0.02 90)">License: EC13009733</text>
+    </g>
+  </g>
+</svg>

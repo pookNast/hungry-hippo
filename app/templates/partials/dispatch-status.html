@@ -1,0 +1,10 @@
+<div
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+  id="dispatch-status"
+>
+  <p class="text-sm">Current dispatch status: <strong>{{ status.technicians_available }} technicians available</strong></p>
+  <p class="text-sm">Average response time: <strong>{{ status.avg_response_time_hours }} hours</strong></p>
+  <p class="text-sm">Active calls: <strong>{{ status.current_calls }}</strong></p>
+</div>
