@@ -101,6 +101,20 @@ async def quote_form(request: Request):
     )
 
 
+@app.get("/privacy-policy", response_class=HTMLResponse)
+async def privacy_policy(request: Request):
+    """Privacy policy and cookie information page"""
+    return templates.TemplateResponse(
+        "privacy-policy.html",
+        {
+            "request": request,
+            "phone": "(239) 237-2899",
+            "license": "EC13009733",
+            "service_areas": ["Fort Myers", "Cape Coral", "Bonita Springs", "Estero"],
+        }
+    )
+
+
 # HTMX Endpoints (Progressive Enhancement)
 @app.get("/partials/service-area-map", response_class=HTMLResponse)
 async def service_area_map_partial(request: Request):

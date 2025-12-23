@@ -154,11 +154,66 @@
         </div>
       </div>
 
-      <div class="border-t border-neutral-800 pt-8 text-sm text-neutral-400 text-center">
-        <p>&copy; 2024 MECS of SWFL. All rights reserved.</p>
+      <div class="border-t border-neutral-800 pt-8 text-sm text-neutral-400">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p>&copy; 2024 MECS of SWFL. All rights reserved.</p>
+          <div class="flex items-center gap-4">
+            <a href="/privacy-policy" class="hover:text-emergency transition-colors">Privacy Policy</a>
+            <span class="text-neutral-700">•</span>
+            <button
+              @click="localStorage.removeItem('cookie-consent'); location.reload()"
+              class="hover:text-emergency transition-colors"
+            >
+              Cookie Settings
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- Cookie Consent Banner (GDPR Compliant) -->
+  <div
+    x-data="{
+      cookieConsent: localStorage.getItem('cookie-consent'),
+      showBanner: localStorage.getItem('cookie-consent') === null
+    }"
+    x-show="showBanner"
+    x-cloak
+    class="fixed bottom-0 left-0 right-0 z-50 bg-neutral-900 text-white p-4 md:p-6 shadow-2xl border-t-4 border-emergency no-print"
+    role="dialog"
+    aria-labelledby="cookie-banner-heading"
+    aria-describedby="cookie-banner-description"
+  >
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex-1">
+          <h2 id="cookie-banner-heading" class="text-lg font-bold mb-2">🍪 Cookie Notice</h2>
+          <p id="cookie-banner-description" class="text-sm text-neutral-300 max-w-3xl">
+            We use essential cookies to ensure our website functions properly and to remember your preferences.
+            We do not use tracking or advertising cookies. By clicking "Accept", you consent to our use of essential cookies.
+            <a href="/privacy-policy" class="underline hover:text-emergency transition-colors">Learn more</a>
+          </p>
+        </div>
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button
+            @click="cookieConsent = 'accepted'; localStorage.setItem('cookie-consent', 'accepted'); showBanner = false"
+            class="bg-emergency hover:bg-emergency-hover text-white font-semibold px-6 py-3 rounded transition-colors focus-ring whitespace-nowrap"
+            aria-label="Accept cookies"
+          >
+            Accept
+          </button>
+          <button
+            @click="cookieConsent = 'declined'; localStorage.setItem('cookie-consent', 'declined'); showBanner = false"
+            class="bg-neutral-700 hover:bg-neutral-600 text-white font-semibold px-6 py-3 rounded transition-colors focus-ring whitespace-nowrap"
+            aria-label="Decline non-essential cookies"
+          >
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Feedback Widget (22s delay, Alpine.js controlled) -->
   <div
